@@ -3,46 +3,47 @@ FROM ubuntu:18.04
 
 RUN apt-get update
 RUN apt-get install -y git curl npm 
-RUN apt-get install -y ruby2.0 ruby2.0-dev
+# RUN apt-get install -y ruby2.0 ruby2.0-dev
+RUN apt-get install -y ruby-full
 
-RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.0 10
-RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.0 10
+RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5 10
+RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10
 
-RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-
+#RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 RUN apt-get install -y sudo
-RUN apt-get install -y --force-yes nodejs
+RUN apt-get install -y nodejs
 
-RUN apt-get install -y  postgresql \
+
+RUN apt-get install -y postgresql \
     postgresql-contrib \
-    postgis \
-    postgresql-9.3-postgis-2.1 \ 
-    postgresql-9.3-postgis-2.1-scripts
+    postgis
+    #postgresql-9.3-postgis-2.1 \
+    #postgresql-9.3-postgis-2.1-scripts
 
-# RUN /etc/init.d/postgresql start
+RUN /etc/init.d/postgresql start
 
-RUN apt-get install -y php5 \
-    php5-gd \
-    php5-cli \
-    php5-json \
-    php5-curl \
-    php5-pgsql \
-    php-apc \
-    php5-fpm \
-    imagemagick \
-    libmagickcore-dev \
-    libmagickwand-dev \
-    php5-imagick
+# RUN apt-get install -y php5 \
+#     php5-gd \
+#     php5-cli \
+#     php5-json \
+#     php5-curl \
+#     php5-pgsql \
+#     php-apc \
+#     php5-fpm \
+#     imagemagick \
+#     libmagickcore-dev \
+#     libmagickwand-dev \
+#     php5-imagick
 
-RUN apt-get install -y nginx
+# RUN apt-get install -y nginx
 
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer.phar
+# RUN curl -sS https://getcomposer.org/installer | php
+# RUN mv composer.phar /usr/local/bin/composer.phar
 
-RUN apt-get install -y zip
-RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
-RUN npm install -g uglify-js2 uglifycss autoprefixer
-RUN update-alternatives --install /usr/bin/uglifyjs uglifyjs /usr/bin/uglifyjs2 10
+# RUN apt-get install -y zip
+# RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+# RUN npm install -g uglify-js2 uglifycss autoprefixer
+# RUN update-alternatives --install /usr/bin/uglifyjs uglifyjs /usr/bin/uglifyjs2 10
 
 # TODO erro ao usar o gem install
 # ERROR:  While executing gem ... (NameError)
