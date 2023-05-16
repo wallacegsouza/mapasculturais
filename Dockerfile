@@ -1,5 +1,4 @@
-#FROM ubuntu:14.04
-FROM ubuntu:18.04
+FROM ubuntu:14.04
 
 RUN apt-get update
 RUN apt-get install -y git curl npm 
@@ -9,8 +8,7 @@ RUN update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.0 10
 RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.0 10
 
 RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-
-RUN apt-get install -y sudo
+#RUN apt-get install -y sudo
 RUN apt-get install -y --force-yes nodejs
 
 RUN apt-get install -y  postgresql \
