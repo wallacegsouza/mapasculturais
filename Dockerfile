@@ -29,6 +29,11 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN sudo apt-get install software-properties-common -y
 RUN sudo add-apt-repository -y ppa:ondrej/php
 
+RUN echo 'deb http://archive.ubuntu.com/ubuntu focal main universe multiverse restricted' >> /etc/apt/sources.list
+RUN echo 'deb http://security.ubuntu.com/ubuntu/ focal-security main multiverse universe restricted' >> /etc/apt/sources.list
+RUN echo 'deb http://archive.ubuntu.com/ubuntu focal-updates main multiverse universe restricted' >> /etc/apt/sources.list
+RUN apt-get update
+
 RUN apt-get install -y php5.6 \
     php5.6-gd \
     php5.6-cli \
@@ -36,32 +41,35 @@ RUN apt-get install -y php5.6 \
     php5.6-curl \
     php5.6-pgsql \
     php-apcu \
-    php5.6-fpm \
-    imagemagick \
+    php5.6-fpm
+
+RUN apt-get install -y imagemagick \
     libmagickcore-dev \
     libmagickwand-dev \
     php5.6-imagick
 
+RUN echo "[apcu]" >> /etc/php/5.6/fpm/php.ini &&\
+    echo "extension=apcu.so" >> /etc/php/5.6/fpm/php.ini &&\
+    echo "apc.enabled=1" >> /etc/php/5.6/fpm/php.ini
 
-RUN echo "[apcu]" >> /etc/php/5.6/apache2/php.ini &&\
-    echo "extension=apcu.so" >> /etc/php/5.6/apache2/php.ini &&\
-    echo "apc.enabled=1" >> /etc/php/5.6/apache2/php.ini
+RUN apt-get install -y nginx
 
-# RUN apt-get install -y nginx
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer.phar
 
-# RUN curl -sS https://getcomposer.org/installer | php
-# RUN mv composer.phar /usr/local/bin/composer.phar
+RUN apt-get install -y zip
+RUN apt-get install -y apt-utils
+RUN apt-get install -y npm --fix-missing
 
-# RUN apt-get install -y zip
-# RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
-# RUN npm install -g uglify-js2 uglifycss autoprefixer
-# RUN update-alternatives --install /usr/bin/uglifyjs uglifyjs /usr/bin/uglifyjs2 10
+#RUN sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+RUN npm install -g uglify-js2 uglifycss autoprefixer
+RUN update-alternatives --install /usr/bin/uglifyjs uglifyjs /usr/local/bin/uglifyjs2 10
 
 # TODO erro ao usar o gem install
 # ERROR:  While executing gem ... (NameError)
 #     uninitialized constant Gem::SafeYAML 
-# RUN gem install sass -v 3.4.22 --no-document
+RUN gem install sass -v 3.4.22 --no-document
 
-# RUN mkdir /app \
-#     cd /app \
-#     git clone https://github.com/hacklabr/mapasculturais.git
+RUN mkdir /app && \
+    cd /app && \
+    git clone https://github.com/hacklabr/mapasculturais.git
