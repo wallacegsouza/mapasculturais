@@ -13,27 +13,39 @@ RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10
 RUN apt-get install -y sudo
 RUN apt-get install -y nodejs
 
+# TODO ver como instalar o postgresql e o postgis
+# RUN apt-get install -y postgresql \
+#     postgresql-contrib \
+#     postgis
+#     postgresql-9.3-postgis-2.1 \
+#     postgresql-9.3-postgis-2.1-scripts
 
-RUN apt-get install -y postgresql \
-    postgresql-contrib \
-    postgis
-    #postgresql-9.3-postgis-2.1 \
-    #postgresql-9.3-postgis-2.1-scripts
+#RUN /etc/init.d/postgresql start
 
-RUN /etc/init.d/postgresql start
+RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/timezone
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+RUN dpkg-reconfigure --frontend noninteractive tzdata
 
-# RUN apt-get install -y php5 \
-#     php5-gd \
-#     php5-cli \
-#     php5-json \
-#     php5-curl \
-#     php5-pgsql \
-#     php-apc \
-#     php5-fpm \
-#     imagemagick \
-#     libmagickcore-dev \
-#     libmagickwand-dev \
-#     php5-imagick
+RUN sudo apt-get install software-properties-common -y
+RUN sudo add-apt-repository -y ppa:ondrej/php
+
+RUN apt-get install -y php5.6 \
+    php5.6-gd \
+    php5.6-cli \
+    php5.6-json \
+    php5.6-curl \
+    php5.6-pgsql \
+    php-apcu \
+    php5.6-fpm \
+    imagemagick \
+    libmagickcore-dev \
+    libmagickwand-dev \
+    php5.6-imagick
+
+
+RUN echo "[apcu]" >> /etc/php/5.6/apache2/php.ini &&\
+    echo "extension=apcu.so" >> /etc/php/5.6/apache2/php.ini &&\
+    echo "apc.enabled=1" >> /etc/php/5.6/apache2/php.ini
 
 # RUN apt-get install -y nginx
 

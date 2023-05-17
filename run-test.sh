@@ -1,1 +1,1 @@
-docker run --name mapas -it --rm mapasculturais /bin/bash
+docker run --name mapas -it --rm mapasculturais18 /bin/bash
