@@ -73,3 +73,24 @@ RUN gem install sass -v 3.4.22 --no-document
 RUN mkdir /app && \
     cd /app && \
     git clone https://github.com/hacklabr/mapasculturais.git
+
+# RUN apt-get install -y postgresql \
+#     postgresql-contrib \
+#     postgis
+
+# RUN apt-get install -y postgresql-9.3-postgis-2.1 \
+#     postgresql-9.3-postgis-2.1-scripts
+
+# RUN /etc/init.d/postgresql start
+
+# RUN sudo apt -y install gnupg2 wget
+# RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+# RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+# RUN sudo apt-get -y install gpg apt-transport-https lsb-release ca-certificates
+# RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+# RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+# RUN sudo apt-get update
+# RUN sudo apt-get install -y gdal-data -f
+# RUN sudo apt-get install -y libgdal-dev -f
+# RUN sudo apt install -y postgresql-13 postgresql-client-13
+# RUN sudo apt install -y postgis postgresql-13-postgis-3
