@@ -45,7 +45,11 @@ RUN update-alternatives --install /usr/bin/uglifyjs uglifyjs /usr/bin/uglifyjs2 
 # TODO erro ao usar o gem install
 # ERROR:  While executing gem ... (NameError)
 #     uninitialized constant Gem::SafeYAML 
-# RUN gem install sass -v 3.4.22 --no-document
+
+RUN sudo apt-get install -y build-essential
+RUN sudo apt-get install -y ruby-ffi
+#RUN gem install sass
+
 
 # RUN mkdir /app \
 #     cd /app \
