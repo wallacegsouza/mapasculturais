@@ -1,1 +1,1 @@
-docker run --name mapas -it --rm mapasculturais14 /bin/bash
+docker run --name mapas -it --rm mapasculturais-php-fpm /bin/bash
