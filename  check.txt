@@ -1,0 +1,12 @@
+apasculturais | ==========================================================================================
+mapasculturais |      PROCESSO 1 de 24 executado das 17:53:26 às 17:53:28 (00:00:01)
+mapasculturais | ------------------------------------------------------------------------------------------
+mapasculturais | /var/lib/gems/2.5.0/gems/sass-3.4.22/lib/sass/util.rb:1109: warning: constant ::Fixnum is deprecated
+mapasculturais | compilando main.css do tema ativo /var/www/html/protected/application/themes/BaseV1/assets//
+mapasculturais | /var/lib/gems/2.5.0/gems/sass-3.4.22/lib/sass/util.rb:1109: warning: constant ::Fixnum is deprecated
+mapasculturais | [19-May-2023 17:53:31] NOTICE: fpm is running, pid 1
+mapasculturais | [19-May-2023 17:53:31] NOTICE: ready to handle connections
+
+
+db_1     | psql:/docker-entrypoint-initdb.d/0.schema.sql:2222: ERROR:  role "postgres" does not exist
+db_1     | 2023-05-19 17:51:57.017 UTC [69] ERROR:  role "postgres" does not exist
