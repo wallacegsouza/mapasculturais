@@ -49,8 +49,15 @@ RUN mkdir /app && \
     cd /app && \
     git clone https://github.com/hacklabr/mapasculturais.git
 
+RUN cd /app/mapasculturais/src/protected/application/plugins && \
+    git clone https://github.com/LibreCoopUruguay/MultipleLocalAuth.git
+
+
+COPY plugins.php /app/mapasculturais/src/protected/application/conf/conf-base.d/plugins.php
+COPY authentication.php /app/mapasculturais/src/protected/application/conf/conf-base.d/authentication.php
+
 RUN cp /app/mapasculturais/src/index.php /var/www/html/index.php
-#RUN --chown=www-data:www-data /app/mapasculturais/src/protected /var/www/html/protected
+#COPY --chown=www-data:www-data /app/mapasculturais/src/protected /var/www/html/protected
 RUN cp -r /app/mapasculturais/src/protected /var/www/html/protected
 RUN chown -R www-data:www-data /var/www/html/protected
 
@@ -77,6 +84,9 @@ RUN cp /app/mapasculturais/version.txt /var/www/version.txt
 
 RUN cp /app/mapasculturais/compose/recreate-pending-pcache-cron.sh /recreate-pending-pcache-cron.sh
 RUN cp /app/mapasculturais/compose/entrypoint.sh /entrypoint.sh
+
+RUN rm -Rf /app
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 WORKDIR /var/www/html/

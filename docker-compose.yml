@@ -5,7 +5,6 @@ services:
     volumes:
      - ./docker-data/public-files:/var/www/html/files
      - ./docker-data/assets:/var/www/html/assets
-     # to prevent 404
      - /dev/null:/var/www/html/index.php
     ports:
      - "8090:80"
@@ -33,6 +32,7 @@ services:
       - APP_LCODE=pt_BR
       - APP_MODE=production
       - PENDING_PCACHE_RECREATION_INTERVAL=60
+      - CEP_TOKEN=$CEP_TOKEN
 
     depends_on:
       - db
@@ -50,3 +50,7 @@ services:
       - ./docker-data/postgres:/var/lib/postgresql/data
       - ./data/db/schema.sql:/docker-entrypoint-initdb.d/0.schema.sql
       - ./data/db/initial-data.sql:/docker-entrypoint-initdb.d/1.data.sql
+
+volumes:
+  cache:
+    driver: local

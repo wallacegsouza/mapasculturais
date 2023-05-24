@@ -1,4 +1,4 @@
-FROM mdillon/postgis:9.6-alpine
+FROM mdillon/postgis:10-alpine
 
 COPY ./db /srv/mapas/db
 
